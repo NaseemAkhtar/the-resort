@@ -3,7 +3,7 @@ import Title from './Title'
 import {RoomContext} from '../context'
 import Room from './Room'
 import Loading from './Loading'
-
+    
 export default class FeaturedRoom extends Component {
     static contextType = RoomContext;
     render() {
