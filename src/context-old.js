@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
-//import items from './data'
-import Client from './Contentfull'
-
-/*Client.getEntries({
-    content_type: 'theResort'
-})
-.then((response) => console.log(response.items))
-.catch(console.error)*/
+import items from './data'
 
 
 //theResort
@@ -28,33 +21,20 @@ export default class RoomProvider extends Component {
         pets: false
     }
 
-    getData = async () => {
-        try{
-            let response = await Client.getEntries({
-                content_type: 'theResort'
-            });
-
-            let rooms = this.formatData(response.items);
-            let featuredRooms = rooms.filter(room => room.featured === true);
-            let maxPrice = Math.max(...rooms.map(item => item.price))
-            let maxSize = Math.max(...rooms.map(item => item.size))
-            this.setState({
-                rooms,
-                featuredRooms,
-                sortedRooms : rooms,
-                loading : false,
-                price: maxPrice,
-                maxPrice,
-                maxSize
-            })
-
-        } catch(err) {
-            console.log(err)
-        }
-    }
-
     componentDidMount(){
-        this.getData()
+        let rooms = this.formatData(items);
+        let featuredRooms = rooms.filter(room => room.featured === true);
+        let maxPrice = Math.max(...rooms.map(item => item.price))
+        let maxSize = Math.max(...rooms.map(item => item.size))
+        this.setState({
+            rooms,
+            featuredRooms,
+            sortedRooms : rooms,
+            loading : false,
+            price: maxPrice,
+            maxPrice,
+            maxSize
+        })
     }
 
     formatData(items){
