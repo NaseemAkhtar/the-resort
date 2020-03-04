@@ -31,7 +31,10 @@ export default class RoomProvider extends Component {
     getData = async () => {
         try{
             let response = await Client.getEntries({
-                content_type: 'theResort'
+                content_type: 'theResort',
+                //order: '-sys.createdAt' //order by name
+                //order: '-fields.price' //reverse order with (-) sign
+                order: 'fields.price'
             });
 
             let rooms = this.formatData(response.items);
